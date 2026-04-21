@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toxic Text Normalizer — Explainable NLP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🧠</span>
+        <span class="logo-text">ToxiClear</span>
+      </div>
+      <p class="tagline">Explainable Toxic Text Normalization · Classical NLP · Interpretable ML</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Input Section -->
+    <section class="card input-card">
+      <h2>Analyze Text</h2>
+      <textarea
+        id="inputText"
+        placeholder="Enter text to analyze... e.g. 'You are so stupid, I hate you!!'"
+        rows="5"
+        maxlength="5000"
+      ></textarea>
+      <div class="input-footer">
+        <span id="charCount">0 / 5000</span>
+        <button id="analyzeBtn" class="btn-primary">
+          <span class="btn-icon">⚡</span> Analyze
+        </button>
+      </div>
+    </section>
+
+    <!-- Loading -->
+    <div id="loadingState" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Analyzing with classical NLP pipeline...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="errorState" class="error-banner hidden"></div>
+
+    <!-- Results -->
+    <div id="results" class="hidden">
+
+      <!-- Score Card -->
+      <section class="card score-card">
+        <div class="score-header">
+          <div class="score-circle-wrap">
+            <svg class="score-ring" viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"/>
+              <circle class="ring-fill" id="scoreRing" cx="60" cy="60" r="50"
+                stroke-dasharray="314" stroke-dashoffset="314"/>
+            </svg>
+            <div class="score-label">
+              <span id="scoreValue">0.00</span>
+              <small>toxicity</small>
+            </div>
+          </div>
+          <div class="score-meta">
+            <span id="labelBadge" class="badge">—</span>
+            <p id="sentimentSummary" class="sentiment-text"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Text Comparison -->
+      <section class="card comparison-card">
+        <div class="comparison-grid">
+          <div class="text-panel original-panel">
+            <h3>Original Text</h3>
+            <div id="originalHighlighted" class="text-display"></div>
+          </div>
+          <div class="arrow-divider">→</div>
+          <div class="text-panel cleaned-panel">
+            <h3>Cleaned Text</h3>
+            <div id="cleanedText" class="text-display clean"></div>
+          </div>
+        </div>
+        <div id="similarityBar" class="similarity-bar">
+          <span>Semantic Similarity:</span>
+          <div class="sim-track">
+            <div id="simFill" class="sim-fill"></div>
+          </div>
+          <span id="simValue">0%</span>
+        </div>
+      </section>
+
+      <!-- Explanation -->
+      <section class="card explain-card">
+        <h2>Why is this toxic?</h2>
+        <p id="summaryText" class="summary-text"></p>
+
+        <div class="explain-grid">
+          <!-- Toxic Words -->
+          <div class="explain-block">
+            <h4>🚨 Toxic Words Detected</h4>
+            <div id="toxicWordsList" class="tag-list"></div>
+          </div>
+
+          <!-- Patterns -->
+          <div class="explain-block">
+            <h4>⚠️ Aggressive Patterns</h4>
+            <div id="patternsList" class="tag-list"></div>
+          </div>
+
+          <!-- Structural Flags -->
+          <div class="explain-block">
+            <h4>🔤 Structural Signals</h4>
+            <div id="structuralList" class="tag-list"></div>
+          </div>
+        </div>
+
+        <!-- Feature Contributions Chart -->
+        <h3 class="section-title">Feature Contributions</h3>
+        <p class="section-sub">Each bar shows how much a feature contributed to the toxicity score.</p>
+        <div id="featureChart" class="feature-chart"></div>
+      </section>
+
+      <!-- Rewrite Changes -->
+      <section class="card changes-card">
+        <h2>Transformations Applied</h2>
+        <ul id="changesList" class="changes-list"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Built with Classical NLP (spaCy + NLTK) · Logistic Regression · Rule-Based Rewriting</p>
+    <p>No transformers · No black-box models · Fully explainable</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
