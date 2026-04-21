@@ -47,3 +47,8 @@ uvicorn.log
 # Environment
 .env
 .env.local
+
+feat.md
+understanding.md
+hinglish.md
+VIVA*.md
