@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ToxiClear</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 280px;
+      background: #1a1d27;
+      color: #e8eaf6;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+    }
+    .header {
+      background: linear-gradient(135deg, #22263a, #12152a);
+      padding: 14px 16px;
+      border-bottom: 1px solid #2e3250;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo { font-size: 1.4rem; }
+    .title { font-size: 1rem; font-weight: 700; color: #8b85ff; }
+    .subtitle { font-size: 0.72rem; color: #8892b0; }
+
+    .body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+    /* Toggle */
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #22263a;
+      border: 1px solid #2e3250;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .toggle-label { font-weight: 600; }
+    .toggle-sub { font-size: 0.75rem; color: #8892b0; }
+    .switch { position: relative; width: 44px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; inset: 0;
+      background: #2e3250;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 18px; height: 18px;
+      left: 3px; top: 3px;
+      background: #8892b0;
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+    input:checked + .slider { background: #6c63ff; }
+    input:checked + .slider::before { transform: translateX(20px); background: #fff; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .stat-box {
+      background: #22263a;
+      border: 1px solid #2e3250;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat-num { font-size: 1.4rem; font-weight: 700; color: #8b85ff; }
+    .stat-label { font-size: 0.72rem; color: #8892b0; margin-top: 2px; }
+    .stat-box.modified .stat-num { color: #ff4d6d; }
+
+    /* Status */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #8892b0;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #555;
+      flex-shrink: 0;
+    }
+    .dot.online { background: #00c896; box-shadow: 0 0 6px #00c896; }
+    .dot.offline { background: #ff4d6d; }
+
+    /* Open UI button */
+    .btn-open {
+      background: linear-gradient(135deg, #6c63ff, #4f46e5);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    .btn-open:hover { opacity: 0.9; }
+
+    .footer {
+      padding: 10px 16px;
+      border-top: 1px solid #2e3250;
+      font-size: 0.7rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="logo">🧠</span>
+    <div>
+      <div class="title">ToxiClear</div>
+      <div class="subtitle">Explainable Toxic Text Normalizer</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <!-- Toggle -->
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Real-time Detection</div>
+        <div class="toggle-sub">Scan and rewrite toxic text on pages</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggleSwitch" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num" id="statAnalyzed">0</div>
+        <div class="stat-label">Analyzed</div>
+      </div>
+      <div class="stat-box modified">
+        <div class="stat-num" id="statModified">0</div>
+        <div class="stat-label">Rewritten</div>
+      </div>
+    </div>
+
+    <!-- Backend status -->
+    <div class="status-row">
+      <div class="dot" id="statusDot"></div>
+      <span id="statusText">Checking backend...</span>
+    </div>
+
+    <!-- Open full UI -->
+    <button class="btn-open" id="openUI">Open Full Analyzer UI</button>
+  </div>
+
+  <div class="footer">Classical NLP · No transformers · Fully explainable</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
