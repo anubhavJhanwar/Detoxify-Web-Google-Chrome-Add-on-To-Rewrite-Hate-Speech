@@ -1,0 +1,49 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Model files (too large for git)
+backend/models/*.pkl
+
+# Dataset files (too large, proprietary)
+data/*.csv
+data/*.tsv
+
+# Markdown files except README
+VIVA_PREPARATION.md
+VIVA_GUIDE.md
+hinglish.md
+VIVA_ENGLISH.md
+*.viva.md
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+
+# Logs
+*.log
+uvicorn.log
+
+# Environment
+.env
+.env.local
